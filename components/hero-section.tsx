@@ -76,14 +76,15 @@ const HeroSection = () => {
               "animate-in:opacity-100 animate-in:scale-100 -ml-4"
             )}
           >
-           <p>
-  Skilled Frontend Developer with expertise in progressive enhancement, design systems, and UI engineering.
-</p>
-<p>
-  Proven track record of delivering successful, high-quality products for clients across multiple countries, with a focus on performance and user experience.
-</p>
-
-
+            <p>
+              Skilled Frontend Developer with expertise in progressive
+              enhancement, design systems, and UI engineering.
+            </p>
+            <p>
+              Proven track record of delivering successful, high-quality
+              products for clients across multiple countries, with a focus on
+              performance and user experience.
+            </p>
           </div>
         </div>
 

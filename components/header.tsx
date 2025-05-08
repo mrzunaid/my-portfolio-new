@@ -20,12 +20,38 @@ export const Header = () => {
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const { currentSection } = useSection();
 
-  const imageSrc =
-  currentSection === "skills" ||
-  currentSection === "projects" ||
-  currentSection === "contact"
-    ? "/menu.png"
-    : "/zunaid-logo-preview.png";
+  // const imageSrc =
+  // currentSection === "skills" ||
+  // currentSection === "projects" ||
+  // currentSection === "contact"
+  //   ? "/menu.png"
+  //   : "/zunaid-logo-preview.png";
+
+  let imageSrc = "/zunaid-logo-preview.png";
+
+  if (currentSection === "hero") {
+    imageSrc = "/zunaid-logo-preview.png";
+  } else if (
+    currentSection === "skills" ||
+    currentSection === "projects" ||
+    currentSection === "contact"
+  ) {
+    imageSrc = "/z-logo.png";
+  }
+   else if (currentSection === "about") {
+    imageSrc = "/z-logo2.png";
+  }
+
+  let width = 170;
+  let height = 170;
+
+  if ( currentSection === "skills" ||
+    currentSection === "projects" ||
+    currentSection === "contact" ||
+    currentSection === "about") {
+    width = 70;
+    height = 70;
+  }
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -37,17 +63,32 @@ export const Header = () => {
   return (
     <div>
       {/* Top right toggle button */}
-      <div className="flex items-center space-x-4">
-        {/* <ThemeToggle /> */}
-        <Image src={imageSrc} alt="About illustration" fill className="z-50 !w-44 !h-44 ml-12" />
-        <button
-          onClick={toggleMenu}
-          className=" w-24 h-24 absolute top-12 right-12 z-50 "
-          aria-label="Toggle menu"
-        >
-          <Image src="/menu-new.png" alt="About illustration" fill className=" " />
-        </button>
-      </div>
+      <div className="w-full flex items-center justify-between px-16 absolute top-2 left-0 z-50 h-[100px]">
+  {/* Left image (logo or dynamic image) */}
+  <Image
+    src={imageSrc}
+    alt="Section illustration"
+    width={width}
+    height={height}
+    className=""
+  />
+
+  {/* Right menu button */}
+  <button
+    onClick={toggleMenu}
+    className="relative w-24 h-24 flex items-center justify-center"
+    aria-label="Toggle menu"
+  >
+    <Image
+      src="/menu-new.png"
+      alt="Menu icon"
+      fill
+      className="object-contain"
+    />
+  </button>
+</div>
+
+
 
       {/* Slide-in Menu Overlay */}
       <div
@@ -85,13 +126,13 @@ export const Header = () => {
                 href="mailto:hello@zunaid.dev"
                 className="text-primary underline underline-offset-4"
               >
-                hello@zunaid.dev
+                zunaid883@gmail.com
               </a>
             </div>
           </div>
 
           {/* Footer Socials */}
-          <div className="flex gap-6 text-sm text-primary">
+          {/* <div className="flex gap-6 text-sm text-primary">
             <a href="#" aria-label="Twitter">
               TW
             </a>
@@ -104,7 +145,7 @@ export const Header = () => {
             <a href="#" aria-label="YouTube">
               YT
             </a>
-          </div>
+          </div> */}
         </nav>
       </div>
     </div>
