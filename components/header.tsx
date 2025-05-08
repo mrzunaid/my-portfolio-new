@@ -9,7 +9,7 @@ import { ThemeToggle } from "../components/theme-toggle";
 import { useSection } from "../components/SectionContext";
 
 const navItems = [
-  { label: "Work", href: "#work" },
+  { label: "Work", href: "#projects" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -112,7 +112,7 @@ export const Header = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="text-xl font-medium text-primary"
+                className="text-xl font-medium text-primary px-2 hover:underline underline-offset-4 transition-all duration-300"
               >
                 {item.label}
               </Link>
