@@ -121,7 +121,10 @@ const ExperienceSection = () => {
             {experiences.map((exp, index) => (
               <div 
                 key={exp.id}
-                ref={el => experienceRefs.current[index] = el} 
+                ref={(el) => {
+                  experienceRefs.current[index] = el;
+                }}
+                
                 className={cn(
                   "relative z-10 opacity-0 translate-y-8 transition-all duration-700 ease-out",
                   "animate-in:opacity-100 animate-in:translate-y-0",
