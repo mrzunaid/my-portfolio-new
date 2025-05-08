@@ -34,7 +34,7 @@ const AboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      id="about"
+      id=""
       className="py-20 h-screen snap-start md:py-32 px-24 bg-[#4731d4] text-white overflow-hidden"
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -46,26 +46,25 @@ const AboutSection = () => {
             </h2>
             <div className="space-y-5 text-white text-lg leading-relaxed w-2/3">
               <p>
-                I've built products for companies and businesses around the
-                globe ranging from marketing websites to complex solutions and
-                enterprise apps with focus on fast, elegant and accessible user
-                experiences.
+                I've contributed to building products for businesses across
+                different regions—ranging from marketing websites to dynamic,
+                data-driven applications—with a strong focus on performance,
+                accessibility, and clean UI implementation.
               </p>
               <p>
-                Currently, I work at <strong>Shopify</strong> as a Senior
-                Frontend Engineer crafting inclusive experiences for over 3
-                million merchants across the world.
+                I specialize in developing responsive and maintainable frontend
+                interfaces, turning designs into seamless experiences using
+                modern frameworks and tools.
               </p>
               <p>
-                Previously, I was Principal Frontend Engineer at{" "}
-                <strong>hellotax</strong>, and before that a consultant at{" "}
-                <strong>Pixel2HTML</strong> building JavaScript apps for various
-                organizations.
+                I’ve collaborated with cross-functional teams to deliver
+                scalable solutions, streamline UI workflows, and ensure
+                consistency across products.
               </p>
               <p>
-                I also led the frontend team at <strong>Conectar</strong>, an
-                e-learning startup focused on building React-based learning
-                platforms.
+                Whether it's enhancing design systems, optimizing components, or
+                improving page speed, I'm always focused on writing efficient
+                and elegant code.
               </p>
             </div>
           </div>

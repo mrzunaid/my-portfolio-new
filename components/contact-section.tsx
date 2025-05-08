@@ -38,12 +38,26 @@ export default function ContactSection() {
           </div>
 
           <div className="flex justify-center">
-          <button
-              type="submit"
-              className="px-40 py-5 border border-[#4B1FC6] text-[#4B1FC6] font-semibold tracking-wide relative overflow-hidden group"
-            >
+            <button className="px-40 py-5 uppercase border border-[#4B1FC6] text-[#4B1FC6] font-semibold tracking-wide relative overflow-hidden group">
               <span className="absolute inset-0 bg-[#4B1FC6] transition-transform duration-500 ease-in-out transform scale-x-0 group-hover:scale-x-100 origin-left z-0"></span>
-              <span className="relative z-10 group-hover:text-white transition-colors duration-500">SHOOT →</span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 tracking-wider">
+                shoot
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M15 6l6 6-6 6"></path>
+                </svg>
+              </span>
             </button>
           </div>
         </form>

@@ -15,24 +15,65 @@ export default function WorkAndWritingSection() {
             Open source projects, <br /> web apps <br />
             and experimentals.
           </p>
-          <button className="border border-[#4731d4] text-[#4731d4] font-semibold px-20 py-5 flex items-center gap-2 hover:bg-[#4731d4] hover:text-white transition-all text-sm tracking-wide uppercase">
-            See my work <ArrowRight size={16} />
-          </button>
+          <div className="flex">
+            <button className="px-20 py-5 uppercase border border-[#4B1FC6] text-[#4B1FC6] font-semibold tracking-wide relative overflow-hidden group">
+              <span className="absolute inset-0 bg-[#4B1FC6] transition-transform duration-500 ease-in-out transform scale-x-0 group-hover:scale-x-100 origin-left z-0"></span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 tracking-wider">
+                See my work
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M15 6l6 6-6 6"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
-        
 
         {/* Right column */}
         <div className="p-10">
           <h2 className="text-3xl md:text-6xl font-bold text-[#4731d4] mb-8">
-            I write,<br /> sometimes
+            I write,
+            <br /> sometimes
           </h2>
           <p className="text-[#1f0c3d] text-2xl mb-16">
             About design, <br /> frontend dev, <br />
             learning and life.
           </p>
-          <button className="border border-[#4731d4] text-[#4731d4] font-semibold px-20 py-5 flex items-center gap-2 hover:bg-[#4731d4] hover:text-white transition-all text-sm tracking-wide uppercase">
-            Read my articles <ArrowRight size={16} />
-          </button>
+
+          <div className="flex">
+            <button className="px-20 py-5 uppercase border border-[#4B1FC6] text-[#4B1FC6] font-semibold tracking-wide relative overflow-hidden group">
+              <span className="absolute inset-0 bg-[#4B1FC6] transition-transform duration-500 ease-in-out transform scale-x-0 group-hover:scale-x-100 origin-left z-0"></span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 tracking-wider">
+                Read my articles
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M15 6l6 6-6 6"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* Vertical icon menu */}

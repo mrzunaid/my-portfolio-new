@@ -3,9 +3,11 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "../components/theme-provider";
-import Header from "../components/header";
+import {Header} from "../components/header";
 import Footer from "../components/footer";
 import CustomCursor from "../components/custom-cursor";
+import { SectionProvider } from "../components/SectionContext";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,31 +28,25 @@ export const metadata: Metadata = {
     "Personal portfolio showcasing my work and skills as a developer",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-          <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-            <CustomCursor />
-            <Header />
-            <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
-              <div className="snap-container">{children}</div>
-            </main>
-
-            {/* <Footer /> */}
-          </div>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <SectionProvider>
+            <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+              <CustomCursor />
+              <Header />
+              <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
+                <div className="snap-container">{children}</div>
+              </main>
+              {/* <Footer /> */}
+            </div>
+          </SectionProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+

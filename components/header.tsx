@@ -1,111 +1,112 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
-import { cn } from '../lib/utils';
-import { ThemeToggle } from '../components/theme-toggle';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { X } from "lucide-react";
+import { cn } from "../lib/utils";
+import Image from "next/image";
+import { ThemeToggle } from "../components/theme-toggle";
+import { useSection } from "../components/SectionContext";
 
-const Header = () => {
+const navItems = [
+  { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
+export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const { currentSection } = useSection();
+
+  const imageSrc =
+  currentSection === "skills" ||
+  currentSection === "projects" ||
+  currentSection === "contact"
+    ? "/menu.png"
+    : "/zunaid-logo-preview.png";
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#work', label: 'Work' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#contact', label: 'Contact' },
-  ];
+  }, [isOpen]);
 
   return (
-    <header className={cn(
-      "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
-      isScrolled ? "bg-background/80 backdrop-blur-lg py-3 shadow-md" : "bg-transparent py-5"
-    )}>
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link 
-          href="#home" 
-          className="text-xl font-bold relative overflow-hidden group"
+    <div>
+      {/* Top right toggle button */}
+      <div className="flex items-center space-x-4">
+        {/* <ThemeToggle /> */}
+        <Image src={imageSrc} alt="About illustration" fill className="z-50 !w-44 !h-44 ml-12" />
+        <button
+          onClick={toggleMenu}
+          className=" w-24 h-24 absolute top-12 right-12 z-50 "
+          aria-label="Toggle menu"
         >
-          {/* <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">Portfolio</span> */}
-          <span className="inline-block absolute top-0 left-0 transition-transform duration-300 translate-y-full group-hover:translate-y-0">Portfolio</span>
-        </Link>
+          <Image src="/menu-new.png" alt="About illustration" fill className=" " />
+        </button>
+      </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "text-sm font-medium relative overflow-hidden transition-colors",
-                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
-                pathname === item.href ? "text-primary" : "text-foreground/80 hover:text-foreground"
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <ThemeToggle />
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <div className="flex items-center space-x-4 md:hidden">
-          <ThemeToggle />
-          <button
-            onClick={toggleMenu}
-            className="text-foreground p-2 rounded-full hover:bg-primary/10 transition-colors"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+      {/* Slide-in Menu Overlay */}
+      <div
+        className={cn(
+          "fixed inset-0 z-50 bg-background/95 backdrop-blur-md transform transition-transform duration-500 ease-in-out",
+          isOpen ? "translate-x-0" : "translate-x-full"
+        )}
+      >
+        {/* Close icon */}
+        <div className="absolute top-5 right-5">
+          <button onClick={toggleMenu} aria-label="Close menu">
+            <X className="text-primary" size={28} />
           </button>
         </div>
-      </div>
 
-      {/* Mobile Navigation */}
-      <div className={cn(
-        "absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md shadow-lg transition-all duration-300 ease-in-out md:hidden overflow-hidden",
-        isOpen ? "max-h-screen py-4" : "max-h-0"
-      )}>
-        <nav className="container mx-auto px-4 flex flex-col space-y-4">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "py-2 px-4 text-lg font-medium transition-colors rounded-md",
-                pathname === item.href 
-                  ? "bg-primary/10 text-primary" 
-                  : "text-foreground/80 hover:bg-primary/5 hover:text-foreground"
-              )}
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+        {/* Menu Content */}
+        <nav className="flex flex-col h-full justify-between p-8 pt-24 space-y-8">
+          <div className="space-y-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="text-xl font-medium text-primary"
+              >
+                {item.label}
+              </Link>
+            ))}
+
+            <div className="mt-8 space-y-2">
+              <p className="uppercase text-muted-foreground text-xs tracking-widest">
+                Say hello
+              </p>
+              <a
+                href="mailto:hello@zunaid.dev"
+                className="text-primary underline underline-offset-4"
+              >
+                hello@zunaid.dev
+              </a>
+            </div>
+          </div>
+
+          {/* Footer Socials */}
+          <div className="flex gap-6 text-sm text-primary">
+            <a href="#" aria-label="Twitter">
+              TW
+            </a>
+            <a href="#" aria-label="GitHub">
+              GH
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              LN
+            </a>
+            <a href="#" aria-label="YouTube">
+              YT
+            </a>
+          </div>
         </nav>
       </div>
-    </header>
+    </div>
   );
 };
-
-export default Header;
