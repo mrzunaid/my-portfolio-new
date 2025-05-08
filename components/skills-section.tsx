@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useEffect } from 'react';
-import { Code, Palette, Cpu, Database, Globe, LineChart } from 'lucide-react';
-import { cn } from '../lib/utils';
+import { useRef, useEffect } from "react";
+import { Code, Palette, Cpu, Database, Globe, LineChart } from "lucide-react";
+import { cn } from "../lib/utils";
 
 interface Skill {
   category: string;
@@ -15,37 +15,86 @@ const skills: Skill[] = [
   {
     category: "Frontend Development",
     icon: <Code size={32} />,
-    items: ["React", "Vue.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS3", "Tailwind CSS", "Responsive Design"],
+    items: [
+      "React",
+      "Vue.js",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "HTML5/CSS3",
+      "Tailwind CSS",
+      "Responsive Design",
+    ],
     color: "var(--chart-1)",
   },
   {
     category: "UI/UX Design",
     icon: <Palette size={32} />,
-    items: ["Figma", "Adobe XD", "User Research", "Wireframing", "Prototyping", "Design Systems", "Accessibility"],
+    items: [
+      "Figma",
+      "Adobe XD",
+      "User Research",
+      "Wireframing",
+      "Prototyping",
+      "Design Systems",
+      "Accessibility",
+    ],
     color: "var(--chart-2)",
   },
   {
     category: "Backend Development",
     icon: <Database size={32} />,
-    items: ["Node.js", "Express", "Python", "Django", "REST APIs", "GraphQL", "PostgreSQL", "MongoDB"],
+    items: [
+      "Node.js",
+      "Express",
+      "Python",
+      "Django",
+      "REST APIs",
+      "GraphQL",
+      "PostgreSQL",
+      "MongoDB",
+    ],
     color: "var(--chart-3)",
   },
   {
     category: "DevOps & Tools",
     icon: <Cpu size={32} />,
-    items: ["Git", "GitHub/GitLab", "CI/CD", "Docker", "AWS", "Vercel", "Testing", "Performance Optimization"],
+    items: [
+      "Git",
+      "GitHub/GitLab",
+      "CI/CD",
+      "Docker",
+      "AWS",
+      "Vercel",
+      "Testing",
+      "Performance Optimization",
+    ],
     color: "var(--chart-4)",
   },
   {
     category: "Digital Marketing",
     icon: <Globe size={32} />,
-    items: ["SEO", "Analytics", "Content Strategy", "Social Media", "Email Marketing", "Conversion Optimization"],
+    items: [
+      "SEO",
+      "Analytics",
+      "Content Strategy",
+      "Social Media",
+      "Email Marketing",
+      "Conversion Optimization",
+    ],
     color: "var(--chart-5)",
   },
   {
     category: "Data Visualization",
     icon: <LineChart size={32} />,
-    items: ["D3.js", "Chart.js", "Recharts", "Dashboard Design", "Data Analysis", "Interactive Visualizations"],
+    items: [
+      "D3.js",
+      "Chart.js",
+      "Recharts",
+      "Dashboard Design",
+      "Data Analysis",
+      "Interactive Visualizations",
+    ],
     color: "var(--primary)",
   },
 ];
@@ -58,34 +107,34 @@ const SkillsSection = () => {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px',
+      rootMargin: "0px 0px -100px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
+          entry.target.classList.add("animate-in");
         }
       });
     }, observerOptions);
 
     if (headingRef.current) observer.observe(headingRef.current);
-    skillRefs.current.forEach(ref => {
+    skillRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
       if (headingRef.current) observer.unobserve(headingRef.current);
-      skillRefs.current.forEach(ref => {
+      skillRefs.current.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="skills" 
+      id="skills"
       className="py-20 h-screen snap-start md:py-32 bg-background/50 relative overflow-hidden"
     >
       <div className="absolute inset-0 -z-10">
@@ -95,7 +144,7 @@ const SkillsSection = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-6">
-        <div 
+        <div
           ref={headingRef}
           className={cn(
             "mb-16 text-center opacity-0 translate-y-8 transition-all duration-700 ease-out",
@@ -106,16 +155,18 @@ const SkillsSection = () => {
             Skills & Expertise
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive overview of my technical skills, design capabilities, and professional 
-            expertise across various domains.
+            A comprehensive overview of my technical skills, design
+            capabilities, and professional expertise across various domains.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {skills.map((skill, index) => (
-            <div 
+            <div
               key={index}
-              ref={el => skillRefs.current[index] = el}
+              ref={(el) => {
+                skillRefs.current[index] = el;
+              }}
               className={cn(
                 "bg-card p-6 rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 opacity-0 scale-95 transition-all duration-700 ease-out",
                 "animate-in:opacity-100 animate-in:scale-100",
@@ -125,15 +176,27 @@ const SkillsSection = () => {
               )}
             >
               <div className="flex items-center mb-4">
-                <div className="mr-4 p-3 rounded-lg" style={{ color: skill.color, backgroundColor: `color-mix(in srgb, ${skill.color} 15%, transparent)` }}>
+                <div
+                  className="mr-4 p-3 rounded-lg"
+                  style={{
+                    color: skill.color,
+                    backgroundColor: `color-mix(in srgb, ${skill.color} 15%, transparent)`,
+                  }}
+                >
                   {skill.icon}
                 </div>
                 <h3 className="text-xl font-bold">{skill.category}</h3>
               </div>
               <ul className="space-y-2">
                 {skill.items.map((item, i) => (
-                  <li key={i} className="flex items-center text-muted-foreground">
-                    <span className="w-2 h-2 rounded-full mr-2" style={{ backgroundColor: skill.color }}></span>
+                  <li
+                    key={i}
+                    className="flex items-center text-muted-foreground"
+                  >
+                    <span
+                      className="w-2 h-2 rounded-full mr-2"
+                      style={{ backgroundColor: skill.color }}
+                    ></span>
                     {item}
                   </li>
                 ))}
